@@ -25,18 +25,29 @@ public class UserInput : MonoBehaviour {
         float ypos = Input.mousePosition.y;
         Vector3 movement = new Vector3(0,0,0);
  
+        bool mouseScroll = false;
+
         //horizontal camera movement
         if(xpos >= 0 && xpos < ResourceManager.ScrollWidth) {
             movement.x -= ResourceManager.ScrollSpeed;
+            player.hud.SetCursorState(CursorState.PanLeft);
+            mouseScroll = true;
         } else if(xpos <= Screen.width && xpos > Screen.width - ResourceManager.ScrollWidth) {
             movement.x += ResourceManager.ScrollSpeed;
+            player.hud.SetCursorState(CursorState.PanRight);
+            mouseScroll = true;
         }
+        
  
         //vertical camera movement
         if(ypos >= 0 && ypos < ResourceManager.ScrollWidth) {
             movement.z -= ResourceManager.ScrollSpeed;
+            player.hud.SetCursorState(CursorState.PanDown);
+            mouseScroll = true;
         } else if(ypos <= Screen.height && ypos > Screen.height - ResourceManager.ScrollWidth) {
             movement.z += ResourceManager.ScrollSpeed;
+            player.hud.SetCursorState(CursorState.PanUp);
+            mouseScroll = true;
         }
  
         //make sure movement is in the direction the camera is pointing
@@ -65,6 +76,9 @@ public class UserInput : MonoBehaviour {
         if(destination != origin) {
             Camera.main.transform.position = Vector3.MoveTowards(origin, destination, Time.deltaTime * ResourceManager.ScrollSpeed);
         }
+        if(!mouseScroll) {
+            player.hud.SetCursorState(CursorState.Select);
+        }
     }
  
     private void RotateCamera() {
@@ -82,10 +96,12 @@ public class UserInput : MonoBehaviour {
             Camera.main.transform.eulerAngles = Vector3.MoveTowards(origin, destination, Time.deltaTime * ResourceManager.RotateSpeed);
         }
     }
+
     private void MouseActivity() {
         if(Input.GetMouseButtonDown(0)) LeftMouseClick();
         else if(Input.GetMouseButtonDown(1)) RightMouseClick();
     }
+
     private void LeftMouseClick() {
 
         if(player.hud.MouseInBounds()) {
@@ -102,7 +118,7 @@ public class UserInput : MonoBehaviour {
 
                         //we already know the player has no selected object
                         player.SelectedObject = worldObject;
-                        worldObject.SetSelection(true);
+                        worldObject.SetSelection(true, player.hud.GetPlayingArea());
                     }
                 }
             }
@@ -124,7 +140,7 @@ public class UserInput : MonoBehaviour {
     }
     private void RightMouseClick() {
         if(player.hud.MouseInBounds() && !Input.GetKey(KeyCode.LeftAlt) && player.SelectedObject) {
-            player.SelectedObject.SetSelection(false);
+            player.SelectedObject.SetSelection(false, player.hud.GetPlayingArea());
             player.SelectedObject = null;
         }
     }

@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class Unit : WorldObject {
+ 
+    /*** Game Engine methods, all can be overridden by subclass ***/
+ 
+    protected override void Awake() {
+        base.Awake();
+    }
+ 
+    protected override void Start () {
+        base.Start();
+    }
+ 
+    protected override void Update () {
+        base.Update();
+    }
+ 
+    protected override void OnGUI() {
+        base.OnGUI();
+    }
 }

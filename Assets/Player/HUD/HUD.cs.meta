@@ -1,12 +1,20 @@
 fileFormatVersion: 2
 guid: 0a396f2aeda16304c8e9159db8623dc3
-timeCreated: 1506057367
+timeCreated: 1508018076
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
+  - mouseCursorSkin: {fileID: 11400000, guid: 42f13bffacb63c34fabca378fcfe8809, type: 2}
   - resourceSkin: {fileID: 11400000, guid: ad8799a414a4a6742a7306ec26bc5f30, type: 2}
   - ordersSkin: {fileID: 11400000, guid: 44a128fa7648e404a86f958357829c77, type: 2}
+  - selectBoxSkin: {fileID: 11400000, guid: 4fe09e9478693a547a46d51f93a65a2c, type: 2}
+  - activeCursor: {instanceID: 0}
+  - selectCursor: {fileID: 2800000, guid: de72269ada3858c4a8c170997e86b101, type: 3}
+  - leftCursor: {fileID: 2800000, guid: 8614a8aa5ccc5af489f2f5bc6cedaa63, type: 3}
+  - rightCursor: {fileID: 2800000, guid: eef8521f62fdaa04d89a3354c1c92984, type: 3}
+  - upCursor: {fileID: 2800000, guid: c856b5e9d4ccc0a4595bb2d4655b0614, type: 3}
+  - downCursor: {fileID: 2800000, guid: e15f54407efacdc47b9f78a29552fdfc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
